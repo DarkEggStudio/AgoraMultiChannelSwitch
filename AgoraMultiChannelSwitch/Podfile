@@ -1,0 +1,25 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.0'
+use_frameworks!
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'AgoraMultiChannelSwitch' do
+  # Agora sdk 4.0.0 preview
+#  pod 'AgoraRtcEngine_iOS_Preview', '4.0.0.preview.6'
+  pod 'AgoraRtcEngine_iOS', '~> 4.0.1'
+  pod 'AGEVideoLayout', '~> 1.0.2'
+  
+  # RTM 1.6.0
+  pod 'AgoraRtm_Special_iOS', '1.6.0.202'
+  
+  # Progress
+  pod 'MBProgressHUD'
+  
+  # PromiseKit
+  pod 'PromiseKit'
+  pod 'PromiseKit/Alamofire'
+
+  # DarkEggKit
+  pod 'DarkEggKit'
+  pod 'DZAnimatedGift'
+end
