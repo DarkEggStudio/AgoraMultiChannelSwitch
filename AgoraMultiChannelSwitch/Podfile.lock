@@ -1,0 +1,78 @@
+PODS:
+  - AGEVideoLayout (1.0.4)
+  - AgoraRtcEngine_iOS (4.0.1):
+    - AgoraRtcEngine_iOS/AINS (= 4.0.1)
+    - AgoraRtcEngine_iOS/AudioBeauty (= 4.0.1)
+    - AgoraRtcEngine_iOS/ClearVision (= 4.0.1)
+    - AgoraRtcEngine_iOS/ContentInspect (= 4.0.1)
+    - AgoraRtcEngine_iOS/PVC (= 4.0.1)
+    - AgoraRtcEngine_iOS/ReplayKit (= 4.0.1)
+    - AgoraRtcEngine_iOS/RtcBasic (= 4.0.1)
+    - AgoraRtcEngine_iOS/SpatialAudio (= 4.0.1)
+    - AgoraRtcEngine_iOS/SuperResolution (= 4.0.1)
+    - AgoraRtcEngine_iOS/VirtualBackground (= 4.0.1)
+  - AgoraRtcEngine_iOS/AINS (4.0.1)
+  - AgoraRtcEngine_iOS/AudioBeauty (4.0.1)
+  - AgoraRtcEngine_iOS/ClearVision (4.0.1)
+  - AgoraRtcEngine_iOS/ContentInspect (4.0.1)
+  - AgoraRtcEngine_iOS/PVC (4.0.1)
+  - AgoraRtcEngine_iOS/ReplayKit (4.0.1)
+  - AgoraRtcEngine_iOS/RtcBasic (4.0.1)
+  - AgoraRtcEngine_iOS/SpatialAudio (4.0.1)
+  - AgoraRtcEngine_iOS/SuperResolution (4.0.1)
+  - AgoraRtcEngine_iOS/VirtualBackground (4.0.1)
+  - AgoraRtm_Special_iOS (1.6.0.202)
+  - Alamofire (4.9.1)
+  - DarkEggKit (1.0.0):
+    - DarkEggKit/Common (= 1.0.0)
+  - DarkEggKit/Common (1.0.0)
+  - DZAnimatedGift (0.1.0)
+  - MBProgressHUD (1.2.0)
+  - PromiseKit (6.17.1):
+    - PromiseKit/CorePromise (= 6.17.1)
+    - PromiseKit/Foundation (= 6.17.1)
+    - PromiseKit/UIKit (= 6.17.1)
+  - PromiseKit/Alamofire (6.17.1):
+    - Alamofire (~> 4.0)
+    - PromiseKit/CorePromise
+  - PromiseKit/CorePromise (6.17.1)
+  - PromiseKit/Foundation (6.17.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.17.1):
+    - PromiseKit/CorePromise
+
+DEPENDENCIES:
+  - AGEVideoLayout (~> 1.0.2)
+  - AgoraRtcEngine_iOS (~> 4.0.1)
+  - AgoraRtm_Special_iOS (= 1.6.0.202)
+  - DarkEggKit
+  - DZAnimatedGift
+  - MBProgressHUD
+  - PromiseKit
+  - PromiseKit/Alamofire
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AgoraRtcEngine_iOS
+  trunk:
+    - AGEVideoLayout
+    - AgoraRtm_Special_iOS
+    - Alamofire
+    - DarkEggKit
+    - DZAnimatedGift
+    - MBProgressHUD
+    - PromiseKit
+
+SPEC CHECKSUMS:
+  AGEVideoLayout: a0122fa3fde4fac227b08da8bee0c3fe8de1682c
+  AgoraRtcEngine_iOS: 0b293c63fbd60c882a0358d78522f38bf0d0bbd9
+  AgoraRtm_Special_iOS: 9a46c3d580f436c5d8cb74b6f4b67bb2d6014456
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  DarkEggKit: c69b40b9f13c8e15b3ffe9d12c6b911d6794be85
+  DZAnimatedGift: a751aa8619852956808d9637dbbd1e9f51a80045
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  PromiseKit: ee485df3d4dc570594d7e7aecae6352697dc6a4c
+
+PODFILE CHECKSUM: 754321df64fcfdc27d1bc263222e8996b4bb1cc5
+
+COCOAPODS: 1.11.3
