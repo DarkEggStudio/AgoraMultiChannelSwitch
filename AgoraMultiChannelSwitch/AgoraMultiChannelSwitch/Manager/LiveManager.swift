@@ -29,9 +29,9 @@ extension LiveManager {
 
 extension LiveManager {
     private func makeDummyRoomList() -> [LiveRoom] {
-        let room1 = LiveRoom(name: "Test01", type: .rtc) // you can change to you own channel id here,
-        let room2 = LiveRoom(name: "Test02", type: .rtc)
-        let room3 = LiveRoom(name: "Test03", type: .rtc)
+        let room1 = LiveRoom(name: "HuTest01", type: .rtc) // you can change to you own channel id here,
+        let room2 = LiveRoom(name: "HuTest02", type: .rtc)
+        let room3 = LiveRoom(name: "HuTest03", type: .rtc)
         let list: [LiveRoom] = [room1, room2, room3]
         self.liveList = list
         return list

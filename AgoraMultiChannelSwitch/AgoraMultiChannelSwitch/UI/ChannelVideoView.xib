@@ -22,7 +22,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwZ-Ls-6jb">
-                    <rect key="frame" x="344.5" y="32" width="37.5" height="18"/>
+                    <rect key="frame" x="20" y="100" width="37.5" height="18"/>
                     <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <nil key="textColor"/>
@@ -34,27 +34,39 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Xr-Pq-UPf">
+                    <rect key="frame" x="20" y="126" width="39.5" height="15.5"/>
+                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                    <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="WYH-vd-SeT" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="88T-Xl-Fc9"/>
+                <constraint firstItem="9Xr-Pq-UPf" firstAttribute="leading" secondItem="mwZ-Ls-6jb" secondAttribute="leading" id="GaD-5U-8a5"/>
                 <constraint firstItem="hG4-WS-cSd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="KG3-cI-uGO"/>
+                <constraint firstItem="9Xr-Pq-UPf" firstAttribute="top" secondItem="mwZ-Ls-6jb" secondAttribute="bottom" constant="8" symbolic="YES" id="NMg-II-hOT"/>
                 <constraint firstAttribute="bottom" secondItem="WYH-vd-SeT" secondAttribute="bottom" id="OBl-wq-xra"/>
                 <constraint firstItem="hG4-WS-cSd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="PAP-4l-GCu"/>
+                <constraint firstItem="mwZ-Ls-6jb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="Qr1-rf-RFG"/>
                 <constraint firstAttribute="bottom" secondItem="hG4-WS-cSd" secondAttribute="bottom" id="Tm8-qq-qY2"/>
                 <constraint firstItem="1Oq-B0-FKP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="aiE-Gm-x5y"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hG4-WS-cSd" secondAttribute="trailing" id="dP9-WK-C34"/>
                 <constraint firstItem="1Oq-B0-FKP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dco-sA-TIa"/>
-                <constraint firstItem="mwZ-Ls-6jb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="32" id="p0o-ez-zyG"/>
+                <constraint firstItem="mwZ-Ls-6jb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="100" id="p0o-ez-zyG"/>
                 <constraint firstItem="WYH-vd-SeT" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="sgT-YI-JsO"/>
                 <constraint firstItem="WYH-vd-SeT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tR7-I0-F3L"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mwZ-Ls-6jb" secondAttribute="trailing" constant="32" id="tbh-E7-PCI"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mwZ-Ls-6jb" secondAttribute="trailing" constant="20" id="tbh-E7-PCI"/>
+                <constraint firstItem="9Xr-Pq-UPf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="vMO-EE-VDe"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="channelLabel" destination="mwZ-Ls-6jb" id="n0O-3Z-9NS"/>
                 <outlet property="coverImageView" destination="hG4-WS-cSd" id="aPt-T9-zns"/>
+                <outlet property="elapsedLabel" destination="9Xr-Pq-UPf" id="Pf9-cV-HKV"/>
                 <outlet property="messageLabel" destination="1Oq-B0-FKP" id="2sw-ge-ScS"/>
                 <outlet property="videoView" destination="WYH-vd-SeT" id="7Ub-Xo-uir"/>
             </connections>

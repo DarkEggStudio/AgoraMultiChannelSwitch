@@ -12,6 +12,7 @@ import DarkEggKit
 class ChannelVideoView: UIView {
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var channelLabel: UILabel!
+    @IBOutlet private weak var elapsedLabel: UILabel!
     @IBOutlet private weak var videoView: UIView!
     @IBOutlet private weak var coverImageView: UIImageView!
     
@@ -31,6 +32,8 @@ class ChannelVideoView: UIView {
         }
     }
     
+    var time: TimeInterval = 0
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -49,6 +52,10 @@ extension ChannelVideoView {
     /// - Parameter channel: channel name
     func joinChannel(_ channel: String, enableAudio: Bool = false) {
         Logger.debug("Join channel \(channel) with audio \(enableAudio)")
+        // set time
+        self.elapsedLabel.text = "elapsed N/A ms"
+        self.time = Date.now.timeIntervalSince1970
+        Logger.debug(self.time)
         self.channelId = channel
         self.agoraMgr.joinEx(channel, uid: 10000, enableAudio: enableAudio, agoraDelegate: self) { [weak self] success, channel in
             self?.channelLabel.text = channel
@@ -102,6 +109,11 @@ extension ChannelVideoView: AgoraRtcEngineDelegate {
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, firstRemoteVideoFrameOfUid uid: UInt, size: CGSize, elapsed: Int) {
 //        self.coverImageView.isHidden = true
+        // updata time
+        let t = Date.now.timeIntervalSince1970 - self.time
+        Logger.debug(t)
+        self.elapsedLabel.text = "elapsed \(Int(t*1000)) ms"
+        self.time = 0
         self.fadeOutCoverImage()
     }
 }

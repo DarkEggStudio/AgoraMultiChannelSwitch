@@ -243,4 +243,8 @@ extension MultiChannelAudienceVC {
         }
         (nums[a],nums[b]) = (nums[b],nums[a])
     }
+    
+    private func updateUIof(room: LiveRoom) {
+        
+    }
 }
