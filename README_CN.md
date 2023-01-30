@@ -147,15 +147,4 @@ func onScrollStop(scrollView: ScrollView) {
 |        | channel08 |             |       |       |       |
 |        | channel09 |             |       |       |       |
 
-## 几个可能还可以优化的点
-
-ViewA的移动时机可能可以提前到 02，以一半屏幕高度作为分界点来处理
-> 这个问题在于如果用户手指不离开屏幕继续往回滚动会造成ViewList的顺序变化过多，可能会有获取View错误的风险
-
-封面图片可以在获取ChannelList之后即开始在后台缓存
-
-## iOS的Demo代码
-
-[AgoraMultiChannelSwitch_iOS on Github](https://github.com/DarkEggStudio/AgoraMultiChannelSwitch_iOS)
-
 -- END --
