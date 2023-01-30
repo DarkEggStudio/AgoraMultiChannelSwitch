@@ -193,57 +193,6 @@ class AgoraManager: NSObject {
         Logger.debug("\(channel) enable audio \(a)")
     }
     
-    func joinTwoChannelTest(channel1: String, channel2: String) {
-        let mediaOption = AgoraRtcChannelMediaOptions()
-        mediaOption.clientRoleType = .audience
-        mediaOption.publishMediaPlayerAudioTrack = false
-        mediaOption.publishCameraTrack = false
-        mediaOption.publishMicrophoneTrack = false
-        mediaOption.publishCustomAudioTrack = false
-
-        mediaOption.enableAudioRecordingOrPlayout = false
-        mediaOption.autoSubscribeAudio = true
-        mediaOption.autoSubscribeVideo = true
-        mediaOption.channelProfile = .liveBroadcasting
-        
-        let connection1 = AgoraRtcConnection()
-        connection1.channelId = channel1
-        connection1.localUid = 10000
-        
-        let connection2 = AgoraRtcConnection()
-        connection2.channelId = channel2
-        connection2.localUid = 10000
-        
-        Logger.debug(connection1.channelId)
-        var ret = self.agoraKit.joinChannelEx(byToken: nil, connection: connection1, delegate: self, mediaOptions: mediaOption) { channel, uid, elapsed in
-            Logger.debug("joinChannelEx: Join \(channel1) with uid \(uid) elapsed \(elapsed)ms")
-            Logger.debug("\(Date().timeIntervalSince1970)")
-            guard uid > 0 else {
-                // fail
-                //completion?(false, channel, nil)
-                return
-            }
-            // success
-            //completion?(true, channel, uid)
-        }
-        Logger.debug(ret)
-        
-        Logger.debug(connection2.channelId)
-        ret = self.agoraKit.joinChannelEx(byToken: nil, connection: connection2, delegate: self, mediaOptions: mediaOption) { channel, uid, elapsed in
-            Logger.debug("joinChannelEx: Join \(channel2) with uid \(uid) elapsed \(elapsed)ms")
-            Logger.debug("\(Date().timeIntervalSince1970)")
-            guard uid > 0 else {
-                // fail
-                //completion?(false, channel, nil)
-                return
-            }
-            // success
-            //completion?(true, channel, uid)
-        }
-        Logger.debug(ret)
-        
-    }
-    
     func leave(completion: (()->Void)? = nil) {
         self.agoraKit.leaveChannel { stats in
             completion?()
@@ -257,27 +206,6 @@ class AgoraManager: NSObject {
         self.agoraKit.leaveChannelEx(connection) { stats in
             Logger.debug()
             completion?()
-        }
-    }
-    
-    func switchChannel(to newChannelName: String) {
-        agoraKit.leaveChannel()
-        
-        let mediaOption = AgoraRtcChannelMediaOptions()
-        mediaOption.clientRoleType = .broadcaster
-        mediaOption.publishMediaPlayerId = 0
-        mediaOption.publishMediaPlayerAudioTrack = true
-        mediaOption.publishCameraTrack = false
-        mediaOption.publishCustomAudioTrack = false
-        mediaOption.enableAudioRecordingOrPlayout = false
-        mediaOption.autoSubscribeAudio = false
-        mediaOption.publishMicrophoneTrack = false                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-        
-        let connection = AgoraRtcConnection()
-        connection.channelId = newChannelName
-        connection.localUid = 0
-        agoraKit.joinChannelEx(byToken: nil, connection: connection, delegate: self, mediaOptions: mediaOption) { channel, uid, elapsed in
-            
         }
     }
     
