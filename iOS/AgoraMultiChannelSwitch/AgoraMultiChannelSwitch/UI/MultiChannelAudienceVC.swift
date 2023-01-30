@@ -13,17 +13,11 @@ import DZAnimatedGift
 class MultiChannelAudienceVC: UIViewController {
     //
     @IBOutlet private weak var roomScrollView: UIScrollView!
-    var liveRooms: [LiveRoom] = []
-    var views: [ChannelVideoView] = []
-    
-    var mainView: ChannelVideoView?
-    var subView: ChannelVideoView?
-    
-    var channelId: String?
     
     //
-//    var mainVideoView: ChannelVideoView? //UIView(frame: UIScreen.main.bounds)
-//    var subVideoView: ChannelVideoView?
+    private var liveRooms: [LiveRoom] = []
+    private var views: [ChannelVideoView] = []
+    private var channelId: String? // current displayed channel Id
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +28,8 @@ class MultiChannelAudienceVC: UIViewController {
         
         // make views array
         self.makeViewsArray()
-        //self.makeMainVideoView()
         
+        // get the room list for scroll
         LiveManager.shared.getLiveList().done { [weak self] list in
             //
             Logger.debug(list)
@@ -73,6 +67,7 @@ class MultiChannelAudienceVC: UIViewController {
     }
 }
 
+// MARK: - Actions
 extension MultiChannelAudienceVC {
     @IBAction private func onCloseButtonClicked(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
@@ -82,11 +77,9 @@ extension MultiChannelAudienceVC {
     }
 }
 
+// MARK: - Private functions
 extension MultiChannelAudienceVC {
-    private func switchChannel() {
-        
-    }
-    
+    /// make view array
     private func makeViewsArray() {
         for i in 0..<3 {
             let frame = CGRect(x: 0.0,
@@ -107,18 +100,14 @@ extension MultiChannelAudienceVC {
     }
 }
 
-extension MultiChannelAudienceVC: AgoraRtcEngineDelegate {
-    
-}
-
-// MARK: -
+// MARK: - AgoraManagerDelegate
 extension MultiChannelAudienceVC: AgoraManagerDelegate {
     func agoraManager(_ mgr: AgoraManager, userJoined uid: UInt) {
-        //
+        Logger.debug("user \(uid) joined.")
     }
     
     func agoraManager(_ mgr: AgoraManager, userLeaved uid: UInt) {
-        //
+        Logger.debug("user \(uid) leaved.")
     }
 }
 
@@ -206,20 +195,21 @@ extension MultiChannelAudienceVC: UIScrollViewDelegate {
         }
         
         // view 0 // preload
-        // view 1 // display video
+        // view 1 // display video <- at this time, user can only see this view
         // view 2 // preload
         
-        // view 0
+        // view 0, switch to other channel
         if let channelNamePrev = LiveManager.shared.prev.name {
             let cview = self.views[0]
             changeVideoView(view: cview, to: channelNamePrev)
         }
-        // view 2
+        // view 2, switch to other channel
         if let channelNameNext = LiveManager.shared.next.name {
             let cview = self.views[2]
             changeVideoView(view: cview, to: channelNameNext)
         }
         
+        // reset the offset
         self.roomScrollView.contentOffset = CGPoint(x: 0, y: UIScreen.main.bounds.height)
     }
 }
@@ -244,7 +234,7 @@ extension MultiChannelAudienceVC {
         (nums[a],nums[b]) = (nums[b],nums[a])
     }
     
-    private func updateUIof(room: LiveRoom) {
-        
+    private func updateUI(room: LiveRoom) {
+        // TODO:
     }
 }

@@ -36,7 +36,6 @@ class AudienceRoomVC: UIViewController {
         self.title = "\(self.channelName ?? "") - \(type.rawValue)"
         // join channel
         agoraMgr.delegate = self
-//        AgoraManager.shared.joinTwoChannelTest(channel1: "\(channelName ?? "")1", channel2: "\(channelName ?? "")2")
         agoraMgr.join(channel: cname, type: type) { [weak self] success, channelName, uid in
             //
             guard success else {
