@@ -171,8 +171,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("DEMO", "unmute Host Audio:"+mCurrentPosition);
                     AgoraManager.getInstance().unMuteAudioEx(hostVideoInfo.getConnection(), false);
 
-                    AgoraManager.getInstance().setUidViewEx(hostVideoInfo.getConnection()
-                            , hostVideoInfo.getHost().getUserId(), hostVideoInfo.getHostVideo());
+
 
                 }
 
@@ -191,12 +190,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
+        if(AgoraManager.getInstance().isReady()) {
+            HostVideoInfo hostVideoInfo = verticalPagerAdapter.findHostVideoInfo(mCurrentPosition);
+            if(hostVideoInfo != null)AgoraManager.getInstance().unMuteAudioEx(hostVideoInfo.getConnection(), true);
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
+        if(AgoraManager.getInstance().isReady()) {
+            HostVideoInfo hostVideoInfo = verticalPagerAdapter.findHostVideoInfo(mCurrentPosition);
+            if(hostVideoInfo != null)AgoraManager.getInstance().unMuteAudioEx(hostVideoInfo.getConnection(), false);
+        }
     }
 }

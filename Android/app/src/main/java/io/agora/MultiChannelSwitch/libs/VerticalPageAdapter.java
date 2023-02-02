@@ -81,6 +81,8 @@ public class VerticalPageAdapter extends PagerAdapter {
         Log.i("DEMO", "Join Channel :"+host.getChannelId());
         AgoraManager.getInstance().joinChannelEx(connection, "");
 
+        AgoraManager.getInstance().setUidViewEx(connection, host.getUserId(), video);
+
         hostInfo.setJoined(true);
 
         hostVideoList.add(hostInfo);

@@ -30,9 +30,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
-    def agora_sdk_version = "4.1.0"
-    // implementation "io.agora.rtc:full-sdk:${agora_sdk_version}"
-    implementation "io.agora.rtc:full-rtc-basic:${agora_sdk_version}"
+    def agora_sdk_version = "4.1.0-1"
+     implementation "io.agora.rtc:full-sdk:${agora_sdk_version}"
+    // implementation "io.agora.rtc:full-rtc-basic:${agora_sdk_version}"
     // 垂直方向的viewpager
     implementation 'com.github.castorflex.verticalviewpager:library:19.0.1'
     // 图片加载框架glide

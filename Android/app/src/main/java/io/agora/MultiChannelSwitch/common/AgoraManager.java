@@ -149,7 +149,10 @@ public class AgoraManager {
 
     public void joinChannelEx(RtcConnection connection, String token)
     {
-
+        if (engineEx == null) {
+            Log.e(TAG, "RTC engine has not been initialized");
+            return;
+        }
             ChannelMediaOptions mediaOptions = new ChannelMediaOptions();
 
 
@@ -165,6 +168,10 @@ public class AgoraManager {
 
     public void updateChannelEx(RtcConnection connection, boolean subscribed)
     {
+        if (engineEx == null) {
+            Log.e(TAG, "RTC engine has not been initialized");
+            return;
+        }
         ChannelMediaOptions mediaOptions = new ChannelMediaOptions();
 
         mediaOptions.autoSubscribeAudio = subscribed;
@@ -216,7 +223,7 @@ public class AgoraManager {
         // Create render view by RtcEngine
         surfaceView = new SurfaceView(this.context);
         surfaceView.setZOrderMediaOverlay(true);
-        surfaceView.setZOrderOnTop(true);
+        //surfaceView.setZOrderOnTop(true);
         view.setReportUid(uid);
 
         // Add to the remote container
