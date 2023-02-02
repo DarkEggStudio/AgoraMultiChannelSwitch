@@ -4,7 +4,7 @@ import io.agora.rtc2.RtcConnection;
 
 public class HostVideoInfo {
     private HostInfo host;
-    private VideoReportLayout hostVideo;
+    private VideoLayout hostVideo;
     private boolean isJoined = false;
     private RtcConnection connection;
     private int position;
@@ -33,7 +33,7 @@ public class HostVideoInfo {
 
     }
 
-    public HostVideoInfo(HostInfo host, VideoReportLayout hostVideo, int position) {
+    public HostVideoInfo(HostInfo host, VideoLayout hostVideo, int position) {
         this.host = host;
         this.hostVideo = hostVideo;
         this.position = position;
@@ -47,11 +47,11 @@ public class HostVideoInfo {
         this.host = host;
     }
 
-    public VideoReportLayout getHostVideo() {
+    public VideoLayout getHostVideo() {
         return hostVideo;
     }
 
-    public void setHostVideo(VideoReportLayout hostVideo) {
+    public void setHostVideo(VideoLayout hostVideo) {
         this.hostVideo = hostVideo;
     }
 

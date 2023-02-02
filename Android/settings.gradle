@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='ImitationDYShortVideo'
+rootProject.name='AgoraMultiChannelSwitch'

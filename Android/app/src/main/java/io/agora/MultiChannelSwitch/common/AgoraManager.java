@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.agora.rtc2.ChannelMediaOptions;
 import io.agora.rtc2.Constants;
@@ -32,6 +33,17 @@ public class AgoraManager {
     private boolean joined = false;
     private boolean secondJoined = false;
     private boolean ready = false;
+    private List<HostInfo> hosts;
+
+    public List<HostInfo> getHosts() {
+        return hosts;
+    }
+
+    public void setHosts(List<HostInfo> hosts) {
+        this.hosts = hosts;
+    }
+
+
 
     private final IRtcEngineEventHandler secondChannelEventHandler = new IRtcEngineEventHandler() {
         @Override
@@ -178,7 +190,7 @@ public class AgoraManager {
             return;
         }
         engineEx.leaveChannelEx(connection);
-        secondJoined = false;
+        joined = false;
     }
 
     public void setupRemoteVideoEx(RtcConnection connection, VideoCanvas view)
@@ -190,14 +202,21 @@ public class AgoraManager {
         engineEx.setupRemoteVideoEx(view, connection);
     }
 
-    public void setUidViewEx(RtcConnection connection, int uid, VideoReportLayout view)
+    public void setUidViewEx(RtcConnection connection, int uid, SurfaceView view)
+    {
+        // Setup remote video to render
+        view.setZOrderOnTop(true);
+        setupRemoteVideoEx(connection, new VideoCanvas(view, RENDER_MODE_HIDDEN, uid));
+    }
+
+    public void setUidViewEx(RtcConnection connection, int uid, VideoLayout view)
     {
         /**Display remote video stream*/
         SurfaceView surfaceView = null;
         // Create render view by RtcEngine
         surfaceView = new SurfaceView(this.context);
         surfaceView.setZOrderMediaOverlay(true);
-
+        surfaceView.setZOrderOnTop(true);
         view.setReportUid(uid);
 
         // Add to the remote container
