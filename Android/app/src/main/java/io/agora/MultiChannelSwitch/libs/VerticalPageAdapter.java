@@ -67,7 +67,9 @@ public class VerticalPageAdapter extends PagerAdapter {
 
         Log.i("DEMO", "Init Host:"+host.getChannelId());
 
-        HostVideoInfo hostInfo = new HostVideoInfo();
+        HostVideoInfo hostInfo = findHostVideoInfo(position);
+
+        if(hostInfo == null) hostInfo = new HostVideoInfo();
         hostInfo.setHost(host);
         hostInfo.setHostVideo(video);
         hostInfo.setPosition(position);
@@ -81,7 +83,7 @@ public class VerticalPageAdapter extends PagerAdapter {
         Log.i("DEMO", "Join Channel :"+host.getChannelId());
         AgoraManager.getInstance().joinChannelEx(connection, "");
 
-        AgoraManager.getInstance().setUidViewEx(connection, host.getUserId(), video);
+        //AgoraManager.getInstance().setUidViewEx(connection, host.getUserId(), video);
 
         hostInfo.setJoined(true);
 

@@ -91,7 +91,9 @@ public class MainActivity extends AppCompatActivity {
 //                Log.i("PageScrolling", "onPageScrolled i:"+i+" v:"+v+" i1:"+i1);
                 // TODO: Join Channel based on Scrolling position
 
-
+                if(v>0.5 && v<0.6) {
+                    Log.i("PageScrolling", "onPageScrolled i:"+i+" v:"+v+" i1:"+i1);
+                }
             }
 
             @Override
@@ -106,21 +108,24 @@ public class MainActivity extends AppCompatActivity {
                  */
                 HostVideoInfo hostVideoInfo = verticalPagerAdapter.findHostVideoInfo(mPreviousPosition);
                 if(hostVideoInfo != null) {
-                    Log.i("DEMO", "mute Previous Host Audio:"+mPreviousPosition);
+//                    Log.i("DEMO", "mute Previous Host Audio:"+mPreviousPosition);
                     AgoraManager.getInstance().unMuteAudioEx(hostVideoInfo.getConnection(), true);
-                    Log.i("DEMO", "unSubscribe Channel:"+mPreviousPosition);
+//                    Log.i("DEMO", "unSubscribe Channel:"+mPreviousPosition);
                     AgoraManager.getInstance().updateChannelEx(hostVideoInfo.getConnection(), false);
 
 
                     // Here, call agora leave channel function is not a good idea,
                     // because if user swipe back to previous one
+
                     // AgoraManager.getInstance().leaveChannelEx(hostVideoInfo.getConnection());
                     // hostVideoInfo.setJoined(false);
                     // Log.i("DEMO", "Leave channel:"+mPreviousPosition);
                 }
 
                 mCurrentPosition = position;
-                //Log.i("DEMO", "onPageSelected position:"+position);
+                Log.i("DEMO", "onPageSelected position:"+position);
+
+
 
             }
 
@@ -155,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
 //                    Log.i("POSITION", "transformPage position:"+position);
                     return;
                 }
-//                Log.i("DEMO", "transformPage position:"+mCurrentPosition);
+                Log.i("DEMO", "transformPage position:"+mCurrentPosition);
 
                 /**
                  * Here is the place when NEW page is fully displayed.
@@ -166,12 +171,13 @@ public class MainActivity extends AppCompatActivity {
                 HostVideoInfo hostVideoInfo = verticalPagerAdapter.findHostVideoInfo(mCurrentPosition);
                 if(hostVideoInfo != null) {
 
-                    Log.i("DEMO", "subscribe Channel:"+mCurrentPosition + " " +hostVideoInfo.getHost().getChannelId());
+                    //Log.i("DEMO", "subscribe Channel:"+mCurrentPosition + " " +hostVideoInfo.getHost().getChannelId());
                     AgoraManager.getInstance().updateChannelEx(hostVideoInfo.getConnection(), true);
-                    Log.i("DEMO", "unmute Host Audio:"+mCurrentPosition);
+                    //Log.i("DEMO", "unmute Host Audio:"+mCurrentPosition);
                     AgoraManager.getInstance().unMuteAudioEx(hostVideoInfo.getConnection(), false);
 
-
+                    AgoraManager.getInstance().setUidViewEx(hostVideoInfo.getConnection()
+                            , hostVideoInfo.getHost().getUserId(), hostVideoInfo.getHostVideo());
 
                 }
 
