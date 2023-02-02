@@ -1,4 +1,4 @@
-package com.hbw.shortvideo.common;
+package io.agora.MultiChannelSwitch.common;
 
 import io.agora.rtc2.IRtcEngineEventHandler.LastmileProbeResult;
 import io.agora.rtc2.IRtcEngineEventHandler.LocalAudioStats;

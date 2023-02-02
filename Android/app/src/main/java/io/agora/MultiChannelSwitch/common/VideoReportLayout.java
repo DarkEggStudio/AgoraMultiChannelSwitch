@@ -1,4 +1,4 @@
-package com.hbw.shortvideo.common;
+package io.agora.MultiChannelSwitch.common;
 
 import android.content.Context;
 import android.graphics.Color;

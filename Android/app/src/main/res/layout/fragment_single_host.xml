@@ -24,7 +24,7 @@
         android:scaleType="fitCenter"
         android:visibility="gone" />
 
-    <com.hbw.shortvideo.common.VideoReportLayout
+    <io.agora.MultiChannelSwitch.common.VideoReportLayout
         android:id="@+id/hostVideo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

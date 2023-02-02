@@ -1,4 +1,4 @@
-package com.hbw.shortvideo.common;
+package io.agora.MultiChannelSwitch.common;
 
 import static io.agora.rtc2.Constants.RENDER_MODE_HIDDEN;
 
@@ -10,7 +10,6 @@ import android.widget.FrameLayout;
 
 import java.util.ArrayList;
 
-import io.agora.mediaplayer.IMediaPlayer;
 import io.agora.rtc2.ChannelMediaOptions;
 import io.agora.rtc2.Constants;
 import io.agora.rtc2.IRtcEngineEventHandler;
@@ -42,14 +41,14 @@ public class AgoraManager {
 
         public void onLeaveChannel(RtcStats stats) {
 
-            Log.i("second", "Left the channel ");
+            Log.i("RTC", "Left the channel ");
 
         }
 
         @Override
         public void onUserJoined(int uid, int elapsed) {
 
-            Log.i("second", String.format("user %d joined!", uid));
+            Log.i("RTC", String.format("user %d joined!", uid));
 
         }
     };
