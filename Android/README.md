@@ -42,14 +42,17 @@ Sequence of a host view
 **destroyItem**
 
 VerticalPageAdapter.destroyItem is called when view is offscreen and released;
+
 So, leave Channel
 
 
 ### Swipe up and down
 Because user may swipe up and down, there are always 3 view which are activated.
+
 It's not a good idea to leave channel when the view is offscreen immediately.
 
 ## TODO:
 Display Host surface view under Scrolling progress
+
 Right now host surface view is displayed after view is fully displayed.
 

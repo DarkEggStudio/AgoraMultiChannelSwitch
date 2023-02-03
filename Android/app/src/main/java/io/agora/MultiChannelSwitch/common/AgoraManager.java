@@ -63,6 +63,11 @@ public class AgoraManager {
             Log.i("RTC", String.format("user %d joined!", uid));
 
         }
+
+        @Override
+        public void onFirstRemoteVideoFrame(int uid, int width, int height, int elapsed) {
+
+        }
     };
 
     private ArrayList<Integer> users = new ArrayList<Integer>();
@@ -147,7 +152,7 @@ public class AgoraManager {
         return joined;
     }
 
-    public void joinChannelEx(RtcConnection connection, String token)
+    public void joinChannelEx(RtcConnection connection, String token, IRtcEngineEventHandler handler)
     {
         if (engineEx == null) {
             Log.e(TAG, "RTC engine has not been initialized");
@@ -160,7 +165,7 @@ public class AgoraManager {
                 mediaOptions.autoSubscribeVideo = false;
                 mediaOptions.clientRoleType = Constants.CLIENT_ROLE_AUDIENCE;
 
-            engineEx.joinChannelEx(token, connection, mediaOptions, secondChannelEventHandler);
+            engineEx.joinChannelEx(token, connection, mediaOptions, handler);
 
             joined = true;
 
@@ -273,6 +278,11 @@ public class AgoraManager {
         @Override
         public void onWarning(int warn) {
             Log.w(TAG, String.format("onWarning code %d message %s", warn, RtcEngine.getErrorDescription(warn)));
+        }
+
+        @Override
+        public void onFirstRemoteVideoFrame(int uid, int width, int height, int elapsed) {
+            Log.e(TAG, String.format("onFirstRemoteVideoFrame %d ", uid));
         }
 
         /**
