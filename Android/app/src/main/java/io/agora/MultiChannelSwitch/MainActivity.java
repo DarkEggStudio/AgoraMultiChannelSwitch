@@ -338,7 +338,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onFirstRemoteVideoFrame(int uid, int width, int height, int elapsed) {
             Log.e(TAG, String.format("onFirstRemoteVideoFrame %d ", uid));
-
+            if (hostId != uid) return;
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    hostVideoInfo.getSurfaceView().setAlpha(1);
+                }
+            });
         }
 
         /**
@@ -370,13 +376,7 @@ public class MainActivity extends AppCompatActivity {
         public void onUserJoined(int uid, int elapsed) {
             super.onUserJoined(uid, elapsed);
             Log.i(TAG, "onUserJoined->" + uid);
-            if (hostId != uid) return;
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    hostVideoInfo.getSurfaceView().setVisibility(View.VISIBLE);
-                }
-            });
+
         }
 
         /**
@@ -399,7 +399,7 @@ public class MainActivity extends AppCompatActivity {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    hostVideoInfo.getSurfaceView().setVisibility(View.VISIBLE);
+                    hostVideoInfo.getSurfaceView().setAlpha(0);
                 }
             });
         }
