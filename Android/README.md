@@ -20,9 +20,12 @@ Override instantiateItem method
 
 ### PageScrolling
 
-* onPageSelected
-* transformPage
-* destroyItem
+Sequence of a host view
+
+1. instantiateItem
+2. onPageSelected
+3. transformPage
+4. destroyItem
 
 **onPageSelected**
 
