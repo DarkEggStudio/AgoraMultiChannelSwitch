@@ -73,7 +73,9 @@ extension ChannelVideoView {
     func leaveChannel() {
         Logger.debug()
         if let cname = self.channelId {
-            self.agoraMgr.leaveEx(channel: cname, localUid: 10000)
+            self.agoraMgr.leaveEx(channel: cname, localUid: 10000) {
+                Logger.debug("leaveChannel success")
+            }
             self.channelId = nil
             if !SettingManager.shared.enablePreload {
                 self.coverImageView.image = UIImage(named: cname)
