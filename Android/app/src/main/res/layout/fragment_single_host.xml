@@ -25,7 +25,7 @@
         android:text=""
         android:textSize="16sp"/>
 
-    <io.agora.MultiChannelSwitch.common.VideoLayout
+    <SurfaceView
         android:id="@+id/hostVideo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

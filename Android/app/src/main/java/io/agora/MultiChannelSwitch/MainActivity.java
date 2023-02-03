@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -247,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
             coverPicture.setImageResource(host.getImageId());
 
 
-            final VideoLayout video = view.findViewById(R.id.hostVideo);
+            final SurfaceView video = view.findViewById(R.id.hostVideo);
 
             Log.i("DEMO", "Init Host:"+host.getChannelId());
 
@@ -255,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
 
             if(hostInfo == null) hostInfo = new HostVideoInfo();
             hostInfo.setHost(host);
-            hostInfo.setHostVideo(video);
+            hostInfo.setSurfaceView(video);
             hostInfo.setPosition(position);
 
             RtcConnection connection = new RtcConnection();
@@ -373,7 +374,7 @@ public class MainActivity extends AppCompatActivity {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    hostVideoInfo.getHostVideo().setVisibility(View.VISIBLE);
+                    hostVideoInfo.getSurfaceView().setVisibility(View.VISIBLE);
                 }
             });
         }
@@ -398,7 +399,7 @@ public class MainActivity extends AppCompatActivity {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    hostVideoInfo.getHostVideo().setVisibility(View.VISIBLE);
+                    hostVideoInfo.getSurfaceView().setVisibility(View.VISIBLE);
                 }
             });
         }

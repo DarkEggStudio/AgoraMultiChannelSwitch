@@ -1,5 +1,7 @@
 package io.agora.MultiChannelSwitch.common;
 
+import android.view.SurfaceView;
+
 import io.agora.rtc2.RtcConnection;
 
 public class HostVideoInfo {
@@ -8,7 +10,7 @@ public class HostVideoInfo {
     private boolean isJoined = false;
     private RtcConnection connection;
     private int position;
-
+    private SurfaceView surfaceView;
 
     public boolean isJoined() {
         return isJoined;
@@ -39,6 +41,12 @@ public class HostVideoInfo {
         this.position = position;
     }
 
+    public HostVideoInfo(HostInfo host, SurfaceView hostVideo, int position) {
+        this.host = host;
+        this.surfaceView = hostVideo;
+        this.position = position;
+    }
+
     public HostInfo getHost() {
         return host;
     }
@@ -55,6 +63,15 @@ public class HostVideoInfo {
         this.hostVideo = hostVideo;
     }
 
+
+    public SurfaceView getSurfaceView() {
+        return surfaceView;
+    }
+
+    public void setSurfaceView(SurfaceView surfaceView) {
+        this.surfaceView = surfaceView;
+    }
+
     public int getPosition() {
         return position;
     }
@@ -63,4 +80,4 @@ public class HostVideoInfo {
         this.position = position;
     }
 
-    }
+}
