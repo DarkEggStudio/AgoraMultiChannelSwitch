@@ -11,6 +11,15 @@ public class HostVideoInfo {
     private RtcConnection connection;
     private int position;
     private SurfaceView surfaceView;
+    private boolean isVisible = false;
+
+    public boolean isVisible() {
+        return isVisible;
+    }
+
+    public void setVisible(boolean visible) {
+        isVisible = visible;
+    }
 
     public boolean isJoined() {
         return isJoined;

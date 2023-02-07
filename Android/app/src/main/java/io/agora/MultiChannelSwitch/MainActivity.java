@@ -106,7 +106,8 @@ public class MainActivity extends AppCompatActivity {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 //                Log.i("PageScrolling", "onPageScrolled i:"+i+" v:"+v+" i1:"+i1);
                 // TODO: Join Channel based on Scrolling position
-
+                int nextPos = position + 1;
+                int prevPos = position - 1;
                 if (positionOffset == 0.0){
                     return;
                 }
@@ -116,11 +117,29 @@ public class MainActivity extends AppCompatActivity {
                     isTopToBottom = true;
 
                     Log.i("PageScrolling", "TopToBottom");
+                    if (positionOffset < 0.6) {
+                        HostVideoInfo prev = verticalPagerAdapter.findHostVideoInfo(prevPos);
+                        if (prev != null && prev.isVisible() == false) {
+                            prev.setVisible(true);
+                            Log.i("DEMO", "updateChannelEx on scrolling");
+                            AgoraManager.getInstance().updateChannelEx(prev.getConnection(), true);
+                        }
+                    }
+
                 } else if (lastValue < positionOffset) {
                     // 递增，从下向上滑动
                     isBottomToTop = true;
                     isTopToBottom = false;
                     Log.i("PageScrolling", "BottomToTop");
+
+                    if (positionOffset > 0.4) {
+                        HostVideoInfo next = verticalPagerAdapter.findHostVideoInfo(nextPos);
+                        if (next != null && next.isVisible() == false) {
+                            next.setVisible(true);
+                            Log.i("DEMO", "updateChannelEx on scrolling");
+                            AgoraManager.getInstance().updateChannelEx(next.getConnection(), true);
+                        }
+                    }
                 } else if (lastValue == positionOffset) {
                     isTopToBottom = isBottomToTop = false;
                 }
@@ -145,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                     AgoraManager.getInstance().unMuteAudioEx(hostVideoInfo.getConnection(), true);
 //                    Log.i("DEMO", "unSubscribe Channel:"+mPreviousPosition);
                     AgoraManager.getInstance().updateChannelEx(hostVideoInfo.getConnection(), false);
-
+                    hostVideoInfo.setVisible(false);
 
                     // Here, call agora leave channel function is not a good idea,
                     // because if user swipe back to previous one
@@ -190,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
                     AgoraManager.getInstance().updateChannelEx(hostVideoInfo.getConnection(), true);
                     //Log.i("DEMO", "unmute Host Audio:"+mCurrentPosition);
                     AgoraManager.getInstance().unMuteAudioEx(hostVideoInfo.getConnection(), false);
-
+                    hostVideoInfo.setVisible(true);
 
                     currentHostVideoInfo = hostVideoInfo;
                 }
