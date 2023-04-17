@@ -18,6 +18,12 @@ class ChannelVideoView: UIView {
     
     let agoraMgr = AgoraManager.shared
     
+    var elapsedText: String = "" {
+        didSet {
+            self.elapsedLabel.text = elapsedText
+        }
+    }
+    
     var channelId: String?
     var coverImageUrl: String? {
         didSet {
@@ -53,7 +59,7 @@ extension ChannelVideoView {
     func joinChannel(_ channel: String, enableAudio: Bool = false) {
         Logger.debug("Join channel \(channel) with audio \(enableAudio)")
         // set time
-        self.elapsedLabel.text = "elapsed N/A ms"
+        self.elapsedText = "Start join channel at \(Date.now.timeIntervalSince1970)"
         self.time = Date.now.timeIntervalSince1970
         Logger.debug(self.time)
         self.channelId = channel
@@ -110,12 +116,13 @@ extension ChannelVideoView: AgoraRtcEngineDelegate {
     }
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, firstRemoteVideoFrameOfUid uid: UInt, size: CGSize, elapsed: Int) {
-//        self.coverImageView.isHidden = true
         // updata time
+        self.elapsedText += "\nGet first frame at \(Date.now.timeIntervalSince1970)"
         let t = Date.now.timeIntervalSince1970 - self.time
         Logger.debug(t)
-        self.elapsedLabel.text = "elapsed \(Int(t*1000)) ms"
+        self.elapsedText += "\nElapsed: \(Int(t*1000)) ms"
         self.time = 0
+        // fade out cover image
         self.fadeOutCoverImage()
     }
 }

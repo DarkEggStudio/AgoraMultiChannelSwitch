@@ -1,30 +1,29 @@
 PODS:
-  - AGEVideoLayout (1.0.4)
-  - AgoraRtcEngine_iOS (4.1.0):
-    - AgoraRtcEngine_iOS/AIAEC (= 4.1.0)
-    - AgoraRtcEngine_iOS/AINS (= 4.1.0)
-    - AgoraRtcEngine_iOS/AudioBeauty (= 4.1.0)
-    - AgoraRtcEngine_iOS/ClearVision (= 4.1.0)
-    - AgoraRtcEngine_iOS/ContentInspect (= 4.1.0)
-    - AgoraRtcEngine_iOS/DRM (= 4.1.0)
-    - AgoraRtcEngine_iOS/ReplayKit (= 4.1.0)
-    - AgoraRtcEngine_iOS/RtcBasic (= 4.1.0)
-    - AgoraRtcEngine_iOS/SpatialAudio (= 4.1.0)
-    - AgoraRtcEngine_iOS/SuperResolution (= 4.1.0)
-    - AgoraRtcEngine_iOS/VirtualBackground (= 4.1.0)
-    - AgoraRtcEngine_iOS/VQA (= 4.1.0)
-  - AgoraRtcEngine_iOS/AIAEC (4.1.0)
-  - AgoraRtcEngine_iOS/AINS (4.1.0)
-  - AgoraRtcEngine_iOS/AudioBeauty (4.1.0)
-  - AgoraRtcEngine_iOS/ClearVision (4.1.0)
-  - AgoraRtcEngine_iOS/ContentInspect (4.1.0)
-  - AgoraRtcEngine_iOS/DRM (4.1.0)
-  - AgoraRtcEngine_iOS/ReplayKit (4.1.0)
-  - AgoraRtcEngine_iOS/RtcBasic (4.1.0)
-  - AgoraRtcEngine_iOS/SpatialAudio (4.1.0)
-  - AgoraRtcEngine_iOS/SuperResolution (4.1.0)
-  - AgoraRtcEngine_iOS/VirtualBackground (4.1.0)
-  - AgoraRtcEngine_iOS/VQA (4.1.0)
+  - AgoraRtcEngine_iOS (4.1.1):
+    - AgoraRtcEngine_iOS/AIAEC (= 4.1.1)
+    - AgoraRtcEngine_iOS/AINS (= 4.1.1)
+    - AgoraRtcEngine_iOS/AudioBeauty (= 4.1.1)
+    - AgoraRtcEngine_iOS/ClearVision (= 4.1.1)
+    - AgoraRtcEngine_iOS/ContentInspect (= 4.1.1)
+    - AgoraRtcEngine_iOS/DRM (= 4.1.1)
+    - AgoraRtcEngine_iOS/FaceDetection (= 4.1.1)
+    - AgoraRtcEngine_iOS/ReplayKit (= 4.1.1)
+    - AgoraRtcEngine_iOS/RtcBasic (= 4.1.1)
+    - AgoraRtcEngine_iOS/SpatialAudio (= 4.1.1)
+    - AgoraRtcEngine_iOS/VirtualBackground (= 4.1.1)
+    - AgoraRtcEngine_iOS/VQA (= 4.1.1)
+  - AgoraRtcEngine_iOS/AIAEC (4.1.1)
+  - AgoraRtcEngine_iOS/AINS (4.1.1)
+  - AgoraRtcEngine_iOS/AudioBeauty (4.1.1)
+  - AgoraRtcEngine_iOS/ClearVision (4.1.1)
+  - AgoraRtcEngine_iOS/ContentInspect (4.1.1)
+  - AgoraRtcEngine_iOS/DRM (4.1.1)
+  - AgoraRtcEngine_iOS/FaceDetection (4.1.1)
+  - AgoraRtcEngine_iOS/ReplayKit (4.1.1)
+  - AgoraRtcEngine_iOS/RtcBasic (4.1.1)
+  - AgoraRtcEngine_iOS/SpatialAudio (4.1.1)
+  - AgoraRtcEngine_iOS/VirtualBackground (4.1.1)
+  - AgoraRtcEngine_iOS/VQA (4.1.1)
   - AgoraRtm_Special_iOS (1.6.0.202)
   - Alamofire (4.9.1)
   - DarkEggKit (1.0.0):
@@ -46,8 +45,7 @@ PODS:
     - PromiseKit/CorePromise
 
 DEPENDENCIES:
-  - AGEVideoLayout (~> 1.0.2)
-  - AgoraRtcEngine_iOS (~> 4.1.0)
+  - AgoraRtcEngine_iOS (~> 4.1.1)
   - AgoraRtm_Special_iOS (= 1.6.0.202)
   - DarkEggKit
   - DZAnimatedGift
@@ -59,7 +57,6 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AgoraRtcEngine_iOS
   trunk:
-    - AGEVideoLayout
     - AgoraRtm_Special_iOS
     - Alamofire
     - DarkEggKit
@@ -68,8 +65,7 @@ SPEC REPOS:
     - PromiseKit
 
 SPEC CHECKSUMS:
-  AGEVideoLayout: a0122fa3fde4fac227b08da8bee0c3fe8de1682c
-  AgoraRtcEngine_iOS: 33f0136ad4196b2a31c8470e6b536fe77fb25f8b
+  AgoraRtcEngine_iOS: df216a18a01c30fba926565d889c9542319252ac
   AgoraRtm_Special_iOS: 9a46c3d580f436c5d8cb74b6f4b67bb2d6014456
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   DarkEggKit: c69b40b9f13c8e15b3ffe9d12c6b911d6794be85
@@ -77,6 +73,6 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   PromiseKit: ee485df3d4dc570594d7e7aecae6352697dc6a4c
 
-PODFILE CHECKSUM: 79f4d03d18c61eaab44acd55a5dd0576a155f5a9
+PODFILE CHECKSUM: 832e16d2b1c080da9eb3f216dd5d85c470aca0d1
 
 COCOAPODS: 1.11.3
