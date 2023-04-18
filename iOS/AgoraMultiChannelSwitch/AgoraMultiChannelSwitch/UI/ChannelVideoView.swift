@@ -17,18 +17,27 @@ class ChannelVideoView: UIView {
     @IBOutlet private weak var coverImageView: UIImageView!
     
     let agoraMgr = AgoraManager.shared
+    private let dateFormatter = DateFormatter()
+    
+    var elapsedText: String = "" {
+        didSet {
+            self.elapsedLabel.text = elapsedText
+        }
+    }
     
     var channelId: String?
     var coverImageUrl: String? {
         didSet {
-            if let image = coverImageUrl {
-                self.coverImageView.image = UIImage(named: image)
-                self.coverImageView.isHidden = false
-                self.coverImageView.alpha = 1.0
-            }
-            else {
-                self.coverImageView.image = nil
-            }
+            //if !SettingManager.shared.enablePreload {
+                if let image = coverImageUrl {
+                    self.coverImageView.image = UIImage(named: image)
+                    self.coverImageView.isHidden = false
+                    self.coverImageView.alpha = 1.0
+                }
+                else {
+                    self.coverImageView.image = nil
+                }
+            //}
         }
     }
     
@@ -36,6 +45,7 @@ class ChannelVideoView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        self.dateFormatter.dateFormat = "yyyy/MM/dd hh:mm:ss.SSS"
     }
 }
 
@@ -53,7 +63,8 @@ extension ChannelVideoView {
     func joinChannel(_ channel: String, enableAudio: Bool = false) {
         Logger.debug("Join channel \(channel) with audio \(enableAudio)")
         // set time
-        self.elapsedLabel.text = "elapsed N/A ms"
+        let dateTimeStr = dateFormatter.string(from: Date.now)
+        self.elapsedText = "Start join channel at \(dateTimeStr)"
         self.time = Date.now.timeIntervalSince1970
         Logger.debug(self.time)
         self.channelId = channel
@@ -82,9 +93,13 @@ extension ChannelVideoView {
                 self.coverImageView.isHidden = false
                 self.coverImageView.alpha = 1.0
             }
+            
+            AgoraErrorCode.abort
         }
     }
     
+    /// enable audio
+    /// - Parameter flag: on/off
     func enableAudio(flag: Bool) {
         if let cname = self.channelId {
             self.agoraMgr.setAudioEnable(flag, ofChannel: cname, localUid: 10000) {
@@ -92,7 +107,11 @@ extension ChannelVideoView {
             }
         }
     }
-    
+}
+
+// MARK: - Private functions
+extension ChannelVideoView {
+    /// fade out cover image
     private func fadeOutCoverImage() {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.4, delay: 0.0) {
@@ -110,12 +129,22 @@ extension ChannelVideoView: AgoraRtcEngineDelegate {
     }
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, firstRemoteVideoFrameOfUid uid: UInt, size: CGSize, elapsed: Int) {
-//        self.coverImageView.isHidden = true
         // updata time
+        let dateTimeStr = dateFormatter.string(from: Date.now)
+        self.elapsedText += "\nGet first frame at \(dateTimeStr)"
         let t = Date.now.timeIntervalSince1970 - self.time
         Logger.debug(t)
-        self.elapsedLabel.text = "elapsed \(Int(t*1000)) ms"
+        self.elapsedText += "\nElapsed: \(Int(t*1000)) ms"
         self.time = 0
+        // fade out cover image
         self.fadeOutCoverImage()
+    }
+    
+    func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurError errorCode: AgoraErrorCode) {
+        Logger.debug("didOccurError: \(errorCode)")
+    }
+    
+    func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurWarning warningCode: AgoraWarningCode) {
+        Logger.debug("didOccurWarning: \(warningCode)")
     }
 }

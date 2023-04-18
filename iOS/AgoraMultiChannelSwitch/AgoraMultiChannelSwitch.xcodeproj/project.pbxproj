@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B74BADFC288FA82D008D4F3F /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74BADFB288FA82D008D4F3F /* SettingVC.swift */; };
 		B74BAE0D28910A22008D4F3F /* SettingBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74BAE0C28910A22008D4F3F /* SettingBaseCell.swift */; };
+		B75FAE6929ED01DA00D0E146 /* AppConfig.swift.local in Resources */ = {isa = PBXBuildFile; fileRef = B75FAE6829ED01DA00D0E146 /* AppConfig.swift.local */; };
 		B77D20982941CD2B003FADC0 /* BidApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77D20972941CD2B003FADC0 /* BidApi.swift */; };
 		B77D209A2941D0E9003FADC0 /* ApiCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77D20992941D0E9003FADC0 /* ApiCommon.swift */; };
 		B77D209D2941D4B6003FADC0 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77D209C2941D4B6003FADC0 /* AppConfig.swift */; };
@@ -58,6 +59,7 @@
 		A286CF8BCC56E632928E7D65 /* Pods-AgoraMultiChannelSwitch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraMultiChannelSwitch.debug.xcconfig"; path = "Target Support Files/Pods-AgoraMultiChannelSwitch/Pods-AgoraMultiChannelSwitch.debug.xcconfig"; sourceTree = "<group>"; };
 		B74BADFB288FA82D008D4F3F /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		B74BAE0C28910A22008D4F3F /* SettingBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingBaseCell.swift; sourceTree = "<group>"; };
+		B75FAE6829ED01DA00D0E146 /* AppConfig.swift.local */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppConfig.swift.local; sourceTree = "<group>"; };
 		B77D20972941CD2B003FADC0 /* BidApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidApi.swift; sourceTree = "<group>"; };
 		B77D20992941D0E9003FADC0 /* ApiCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCommon.swift; sourceTree = "<group>"; };
 		B77D209C2941D4B6003FADC0 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 		B77D209B2941D4A9003FADC0 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				B75FAE6829ED01DA00D0E146 /* AppConfig.swift.local */,
 				B77D209C2941D4B6003FADC0 /* AppConfig.swift */,
 			);
 			path = Config;
@@ -342,6 +345,7 @@
 				B7D4E72E28780B2F00CCFB02 /* LaunchScreen.storyboard in Resources */,
 				B7D4E72B28780B2F00CCFB02 /* Assets.xcassets in Resources */,
 				B7D4E72928780B2C00CCFB02 /* Main.storyboard in Resources */,
+				B75FAE6929ED01DA00D0E146 /* AppConfig.swift.local in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

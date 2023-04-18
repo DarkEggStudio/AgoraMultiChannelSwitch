@@ -8,7 +8,6 @@
 import Foundation
 import AVKit
 import AgoraRtcKit
-import AGEVideoLayout
 import DarkEggKit
 
 @objc protocol AgoraManagerDelegate: AnyObject {
@@ -41,7 +40,7 @@ class AgoraManager: NSObject {
         super.init()
         let config = AgoraRtcEngineConfig()
         config.areaCode = .global
-        config.appId = <#Your Agora AppId#> 
+        config.appId = AppConfig.shared.rtc.appId
         agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self) //(withAppId: "", delegate: self)
         agoraKit.delegate = self
         agoraKit.setChannelProfile(.liveBroadcasting)
@@ -176,13 +175,13 @@ class AgoraManager: NSObject {
         mediaOption.publishCustomAudioTrack = false
 
         mediaOption.enableAudioRecordingOrPlayout = true
-        mediaOption.autoSubscribeAudio = false
+        //mediaOption.autoSubscribeAudio = false
         mediaOption.autoSubscribeVideo = true
         mediaOption.channelProfile = .liveBroadcasting
         
-        mediaOption.autoSubscribeAudio = true
+        mediaOption.autoSubscribeAudio = enable
         mediaOption.enableAudioRecordingOrPlayout = true
-        mediaOption.autoSubscribeAudio = true
+        //mediaOption.autoSubscribeAudio = true
         
         let connection = AgoraRtcConnection()
         connection.channelId = channel

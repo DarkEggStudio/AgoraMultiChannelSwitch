@@ -4,10 +4,8 @@ use_frameworks!
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'AgoraMultiChannelSwitch' do
-  # Agora sdk 4.0.0 preview
-#  pod 'AgoraRtcEngine_iOS_Preview', '4.0.0.preview.6'
-  pod 'AgoraRtcEngine_iOS', '~> 4.1.0'
-  pod 'AGEVideoLayout', '~> 1.0.2'
+  # Agora sdk 4.1.1
+  pod 'AgoraRtcEngine_iOS', '~> 4.1.1'
   
   # RTM 1.6.0
   pod 'AgoraRtm_Special_iOS', '1.6.0.202'
@@ -34,5 +32,5 @@ post_install do |installer|
    end
     # Check out: https://github.com/flutter/flutter/issues/123852
     # Workaround for Xcode 14.3:
-    system('sed -i \'\' \'44s/readlink/readlink -f/\' \'Pods/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh\'')
+    # system('sed -i \'\' \'44s/readlink/readlink -f/\' \'Pods/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh\'')
 end
