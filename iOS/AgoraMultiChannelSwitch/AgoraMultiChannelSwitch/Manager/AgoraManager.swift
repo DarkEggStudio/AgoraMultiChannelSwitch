@@ -175,13 +175,13 @@ class AgoraManager: NSObject {
         mediaOption.publishCustomAudioTrack = false
 
         mediaOption.enableAudioRecordingOrPlayout = true
-        mediaOption.autoSubscribeAudio = false
+        //mediaOption.autoSubscribeAudio = false
         mediaOption.autoSubscribeVideo = true
         mediaOption.channelProfile = .liveBroadcasting
         
-        mediaOption.autoSubscribeAudio = true
+        mediaOption.autoSubscribeAudio = enable
         mediaOption.enableAudioRecordingOrPlayout = true
-        mediaOption.autoSubscribeAudio = true
+        //mediaOption.autoSubscribeAudio = true
         
         let connection = AgoraRtcConnection()
         connection.channelId = channel

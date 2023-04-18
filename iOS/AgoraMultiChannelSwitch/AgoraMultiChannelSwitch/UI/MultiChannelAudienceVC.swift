@@ -18,6 +18,7 @@ class MultiChannelAudienceVC: UIViewController {
     private var liveRooms: [LiveRoom] = []
     private var views: [ChannelVideoView] = []
     private var channelId: String? // current displayed channel Id
+    private var tempNames: [String] = ["A", "B", "C"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,12 +137,11 @@ extension MultiChannelAudienceVC: UIScrollViewDelegate {
         }
         
         if SettingManager.shared.enablePreload {
-            
+            // already loaded
         }
         else {
             if yOffset - screenHeight > 32 {
                 // load next one
-                //frame.origin.y = screenHeight * 2
                 r = LiveManager.shared.next
                 let cview = views[2]
                 if cview.channelId == nil, let cname = r?.name {
@@ -150,8 +150,8 @@ extension MultiChannelAudienceVC: UIScrollViewDelegate {
                     cview.enableAudio(flag: false)
                 }
             }
-            else if yOffset - screenHeight < -10 {
-                //frame.origin.y = screenHeight * 0
+            else if yOffset - screenHeight < -32 {
+                // load prev one
                 r = LiveManager.shared.prev
                 // load prev one
                 let cview = views[0]
@@ -168,49 +168,76 @@ extension MultiChannelAudienceVC: UIScrollViewDelegate {
         let yOffset = scrollView.contentOffset.y
         let screenHeight = UIScreen.main.bounds.height
         let viewIndex = Int(yOffset/screenHeight)
-        if let a = IndexStepping(rawValue: viewIndex - 1) {
-            Logger.debug("step \(a.rawValue)")
-            LiveManager.shared.updateIndex(a)
+        
+        guard let step = IndexStepping(rawValue: viewIndex - 1) else {
+            Logger.debug("Not move, do nothing.")
+            if !SettingManager.shared.enablePreload {
+                self.views[0].leaveChannel()
+                self.views[2].leaveChannel()
+            }
+            return
         }
-        //Logger.debug("stop at \(yOffset), index \(viewIndex)")
+        
+        //if let step = IndexStepping(rawValue: viewIndex - 1) {
+            Logger.debug("step \(step.rawValue)")
+            LiveManager.shared.updateIndex(step)
+        //}
 
         // swap
         // set main view to center
-        swap(&views, 1, viewIndex)
+        //swap(&views, 1, viewIndex)
+        let direction: ReorderDirection = ((step == .forward) ? .headToTail : .tailToHead)
+        reorder(&views, direction: direction)
+        // debug
+        //reorder(&tempNames, direction: direction)
+        //Logger.debug("tempNames: \(tempNames)")
         
+        // 20230417 update
+        // if scroll up(a == 1), do not change any thing in view[0]
+        // if scroll down(a == -1). do not change any thin in view[2]
+        // if scroll none(a == 0). do not change any thin in view[0] and view[2]
         for (idx, v) in self.views.enumerated() {
             let frame = CGRect(x: 0.0,
                                y: (CGFloat(idx) - 0.0) * UIScreen.main.bounds.height,
                                width: UIScreen.main.bounds.width,
                                height: UIScreen.main.bounds.height)
             v.frame = frame
-            if idx != 1 {
-                Logger.debug("view at \(idx) leave channel")
-                //self.views.append(v)
-                v.leaveChannel()
-            }
-            else {
-                v.enableAudio(flag: true)
-            }
+            v.enableAudio(flag: (idx == 1))
         }
         
         // view 0 // preload
         // view 1 // display video <- at this time, user can only see this view
         // view 2 // preload
         
-        // view 0, switch to other channel
-        if let channelNamePrev = LiveManager.shared.prev.name {
-            let cview = self.views[0]
-            changeVideoView(view: cview, to: channelNamePrev)
-        }
-        // view 2, switch to other channel
-        if let channelNameNext = LiveManager.shared.next.name {
-            let cview = self.views[2]
-            changeVideoView(view: cview, to: channelNameNext)
+        switch direction {
+        case .headToTail:
+            let oldView = self.views[0]
+            if !SettingManager.shared.enablePreload {
+                oldView.leaveChannel()
+            }
+            if let channelNameNext = LiveManager.shared.next.name {
+                let cview = self.views[2]
+                cview.leaveChannel()
+                self.changeVideoView(view: cview, to: channelNameNext)
+            }
+            break
+        case .tailToHead:
+            let oldView = self.views[2]
+            if !SettingManager.shared.enablePreload {
+                oldView.leaveChannel()
+            }
+            if let channelNamePrev = LiveManager.shared.prev.name {
+                let cview = self.views[0]
+                cview.leaveChannel()
+                self.changeVideoView(view: cview, to: channelNamePrev)
+            }
+            break
         }
         
-        // reset the offset
-        self.roomScrollView.contentOffset = CGPoint(x: 0, y: UIScreen.main.bounds.height)
+        DispatchQueue.main.async {
+            // reset the offset
+            self.roomScrollView.contentOffset = CGPoint(x: 0, y: UIScreen.main.bounds.height)
+        }
     }
 }
 
@@ -219,9 +246,11 @@ extension MultiChannelAudienceVC {
         cview.channelId = channel
         cview.coverImageUrl = channel
         if SettingManager.shared.enablePreload {
+            // preload
             cview.joinChannel(channel, enableAudio: false)
         }
         else {
+            // not preload
             cview.leaveChannel()
         }
     }
@@ -232,6 +261,27 @@ extension MultiChannelAudienceVC {
             return
         }
         (nums[a],nums[b]) = (nums[b],nums[a])
+    }
+    
+    enum ReorderDirection {
+        case headToTail
+        case tailToHead
+    }
+    
+    private func reorder<T>(_ arr: inout[T], direction: ReorderDirection) {
+        //let count = arr.count
+        switch direction {
+        case .headToTail:
+            let temp = arr[0]
+            arr.remove(at: 0)
+            arr.append(temp)
+            break
+        case .tailToHead:
+            if let temp = arr.popLast() {
+                arr.insert(temp, at: 0)
+            }
+            break
+        }
     }
     
     private func updateUI(room: LiveRoom) {
